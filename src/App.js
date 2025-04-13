@@ -2,7 +2,7 @@ import "./App.css";
 import Header from "./component/Header";
 import TodoEditor from "./component/TodoEditor";
 import TodoList from "./component/TodoList";
-import { useReducer, useRef } from "react";
+import { useCallback, useReducer, useRef } from "react";
 
 const mockTodo = [
   {
@@ -65,18 +65,18 @@ function App() {
     });
     idRef.current += 1;
   };
-  const onUpdate = (targetId) => {
+  const onUpdate = useCallback((targetId) => {
     dispatch({
       type: "UPDATE",
       targetId, //체크 여부
     });
-  };
-  const onDelete = (targetId) => {
+  }, []);
+  const onDelete = useCallback((targetId) => {
     dispatch({
       type: "DELETE",
       targetId, //삭제할 아이템
     });
-  };
+  }, []);
 
   return (
     <div className="App">
