@@ -2,7 +2,7 @@ import "./App.css";
 import Header from "./component/Header";
 import TodoEditor from "./component/TodoEditor";
 import TodoList from "./component/TodoList";
-import { useState, useRef } from "react";
+import { useReducer, useRef } from "react";
 
 const mockTodo = [
   {
@@ -25,28 +25,57 @@ const mockTodo = [
   },
 ];
 
+function reducer(state, action) {
+  //상태 변화 로직
+  switch (action.type) {
+    case "CREATE": {
+      return [action.newItem, ...state];
+    }
+    case "UPDATE": {
+      return state.map((it) =>
+        it.id === action.targetId //targetId 아니라 action.targetId
+          ? {
+              ...it,
+              isDone: !it.isDone,
+            }
+          : it
+      );
+    }
+    case "DELETE": {
+      return state.filter((it) => it.id !== action.targetId);
+    }
+    default:
+      return state;
+  }
+}
+
 function App() {
-  const [todo, setTodo] = useState(mockTodo);
+  const [todo, dispatch] = useReducer(reducer, mockTodo);
   const idRef = useRef(3); //이전에 0,1,2가 있으므로 초깃값 3으로 설정
   const onCreate = (content) => {
-    const newItem = {
-      id: idRef.current,
-      isDone: false,
-      content,
-      createdDate: new Date().getTime(),
-    };
-    setTodo([newItem, ...todo]);
+    dispatch({
+      type: "CREATE",
+      newItem: {
+        //추가 내용
+        id: idRef.current,
+        isDone: false,
+        content,
+        createdDate: new Date().getTime(),
+      },
+    });
     idRef.current += 1;
   };
   const onUpdate = (targetId) => {
-    setTodo(
-      todo.map((it) =>
-        it.id === targetId ? { ...it, isDone: !it.isDone } : it
-      )
-    );
+    dispatch({
+      type: "UPDATE",
+      targetId, //체크 여부
+    });
   };
   const onDelete = (targetId) => {
-    setTodo(todo.filter((it) => it.id !== targetId));
+    dispatch({
+      type: "DELETE",
+      targetId, //삭제할 아이템
+    });
   };
 
   return (
