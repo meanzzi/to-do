@@ -2,7 +2,9 @@ import "./App.css";
 import Header from "./component/Header";
 import TodoEditor from "./component/TodoEditor";
 import TodoList from "./component/TodoList";
-import { useCallback, useReducer, useRef } from "react";
+import React, { useCallback, useReducer, useRef } from "react";
+
+export const TodoContext = React.createContext();
 
 const mockTodo = [
   {
@@ -52,7 +54,7 @@ function reducer(state, action) {
 function App() {
   const [todo, dispatch] = useReducer(reducer, mockTodo);
   const idRef = useRef(3); //이전에 0,1,2가 있으므로 초깃값 3으로 설정
-  const onCreate = (content) => {
+  const onCreate = useCallback((content) => {
     dispatch({
       type: "CREATE",
       newItem: {
@@ -64,7 +66,10 @@ function App() {
       },
     });
     idRef.current += 1;
-  };
+  }, []);
+  // const onCreate = useCallback(() => {
+  //   setState((state) => [newItem, ...state]);
+  // }, []);
   const onUpdate = useCallback((targetId) => {
     dispatch({
       type: "UPDATE",
@@ -77,13 +82,17 @@ function App() {
       targetId, //삭제할 아이템
     });
   }, []);
+  // const memoizedDispatches = useMemo(() => {
+  //   return { onCreate, onUpdate, onDelete };
+  // }, [onCreate, onUpdate, onDelete]);
 
   return (
     <div className="App">
       <Header />
-      <TodoEditor onCreate={onCreate} />
-      {/* 추가 버튼을 눌러야 호출되므로 컴포넌트 props로 전달   */}
-      <TodoList todo={todo} onUpdate={onUpdate} onDelete={onDelete} />
+      <TodoContext.Provider value={{ todo, onCreate, onUpdate, onDelete }}>
+        <TodoEditor />
+        <TodoList />
+      </TodoContext.Provider>
     </div>
   );
 }
