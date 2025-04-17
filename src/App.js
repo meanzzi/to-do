@@ -2,9 +2,10 @@ import "./App.css";
 import Header from "./component/Header";
 import TodoEditor from "./component/TodoEditor";
 import TodoList from "./component/TodoList";
-import React, { useCallback, useReducer, useRef } from "react";
+import React, { useMemo, useCallback, useReducer, useRef } from "react";
 
-export const TodoContext = React.createContext();
+export const TodoStateContext = React.createContext();
+export const TodoDispatchContext = React.createContext();
 
 const mockTodo = [
   {
@@ -67,32 +68,34 @@ function App() {
     });
     idRef.current += 1;
   }, []);
-  // const onCreate = useCallback(() => {
-  //   setState((state) => [newItem, ...state]);
-  // }, []);
+
   const onUpdate = useCallback((targetId) => {
     dispatch({
       type: "UPDATE",
       targetId, //체크 여부
     });
   }, []);
+
   const onDelete = useCallback((targetId) => {
     dispatch({
       type: "DELETE",
       targetId, //삭제할 아이템
     });
   }, []);
-  // const memoizedDispatches = useMemo(() => {
-  //   return { onCreate, onUpdate, onDelete };
-  // }, [onCreate, onUpdate, onDelete]);
+
+  const memoizedDispatches = useMemo(() => {
+    return { onCreate, onUpdate, onDelete };
+  }, []); //마운트 이후에 다시 재생성x
 
   return (
     <div className="App">
       <Header />
-      <TodoContext.Provider value={{ todo, onCreate, onUpdate, onDelete }}>
-        <TodoEditor />
-        <TodoList />
-      </TodoContext.Provider>
+      <TodoStateContext.Provider value={todo}>
+        <TodoDispatchContext.Provider value={memoizedDispatches}>
+          <TodoEditor />
+          <TodoList />
+        </TodoDispatchContext.Provider>
+      </TodoStateContext.Provider>
     </div>
   );
 }
