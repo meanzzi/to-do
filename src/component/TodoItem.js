@@ -22,7 +22,7 @@ const TodoItem = ({ id, content, isDone, createdDate }) => {
         {new Date(createdDate).toLocaleDateString()}
       </div>
       <div className="btn_col">
-        <button onClick={onClickDelete}>삭제</button>
+        <button onClick={onClickDelete}>Delete</button>
       </div>
     </div>
   );

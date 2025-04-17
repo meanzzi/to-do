@@ -28,16 +28,15 @@ const TodoEditor = () => {
 
   return (
     <div className="TodoEditor">
-      <h4>새로운 Todo 작성하기✏</h4>
       <div className="editor_wrapper">
         <input
           ref={inputRef}
           value={content}
           onChange={onChangeContent}
           onKeyDown={onKeyDown}
-          placeholder="새로운 Todo 작성하기"
+          placeholder="Write a new todo.."
         />
-        <button onClick={onSubmit}>추가</button>
+        <button onClick={onSubmit}>ADD</button>
       </div>
     </div>
   );

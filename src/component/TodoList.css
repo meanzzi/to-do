@@ -1,16 +1,36 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
+.TodoList .TodoCount {
+  display: flex;
+  gap: 30px;
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-weight: 600;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.TodoList .Undone {
+  color: #574ff8;
+}
+
 .TodoList .searchbar {
   margin-bottom: 20px;
   width: 100%;
   border: none;
-  border-bottom: 1px solid #d1d1d1;
+  border-bottom: 1px solid #574ff8;
   box-sizing: border-box;
   padding-top: 15px;
   padding-bottom: 15px;
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
 }
 
 .TodoList .searchbar:focus {
   outline: none;
-  border-bottom: 1px solid #d1d1d1;
+  border-bottom: 1px solid #221ac0;
 }
 
 .TodoList .list_wrapper {

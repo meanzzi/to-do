@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
 .TodoEditor .editor_wrapper {
   width: 100%;
   display: flex;
@@ -7,21 +9,28 @@
 .TodoEditor input {
   flex: 1;
   box-sizing: border-box;
-  border: 1px solid #d6d6d6;
+  border: 1px solid #6c63ff;
   border-radius: 5px;
   padding: 15px;
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
 }
 
 .TodoEditor input:focus {
   outline: none;
-  border: 1px solid #c541fa;
+  border: 1px solid #080281;
 }
 
 .TodoEditor button {
   cursor: pointer;
   width: 80px;
   border: none;
-  background-color: #c541fa;
+  background-color: #6c63ff;
   color: white;
   border-radius: 5px;
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+  font-weight: 500;
 }

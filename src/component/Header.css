@@ -1,4 +1,21 @@
-.Header h1 {
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
+.today {
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+.label {
+  font-weight: 800;
+  font-size: 40px;
+  align-items: center;
+}
+
+.date {
   margin-bottom: 0px;
-  color: #c541fa;
+  color: #6e6e6e;
+  font-size: 25px;
+  font-weight: 400;
+  margin-top: 10px;
 }

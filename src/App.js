@@ -11,19 +11,19 @@ const mockTodo = [
   {
     id: 0,
     isDone: false,
-    content: "React 공부하기",
+    content: "React Study",
     createdDate: new Date().getTime(), //타임스탬프 값으로 변환 -> 보관할 데이터 양 줄어듦
   },
   {
     id: 1,
     isDone: false,
-    content: "TOEIC Speacking 공부하기",
+    content: "TOEIC Speacking Study",
     createdDate: new Date().getTime(),
   },
   {
     id: 2,
     isDone: false,
-    content: "회고록 작성하기",
+    content: "Write blog",
     createdDate: new Date().getTime(),
   },
 ];
