@@ -1,5 +1,5 @@
 ## 간단한 Todo 웹 만들기
-<img width="800" alt="스크린샷" src="https://github.com/user-attachments/assets/39bc2160-a9f8-4130-b954-030698dc5abf">
+<img width="700" alt="스크린샷" src="https://github.com/user-attachments/assets/39bc2160-a9f8-4130-b954-030698dc5abf">
 
 --------------------------------------------------------------
 - useReducer 사용하여 상태 변화 코드 컴포넌트 외부에 작성
