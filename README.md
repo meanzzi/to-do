@@ -1,4 +1,4 @@
-## 간단한 Todo 웹 만들기
+## TODO LIST
 <img width="700" alt="스크린샷" src="https://github.com/user-attachments/assets/39bc2160-a9f8-4130-b954-030698dc5abf">
 
 --------------------------------------------------------------
